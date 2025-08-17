@@ -3,13 +3,6 @@ description: "Automatically create a new article file when an issue is created."
 title: "title: "
 labels: ["zenn:new-article"]
 body:
-  - type: input
-    id: title
-    attributes:
-      label: "Title"
-      placeholder: "Example: BigQuery IS DISTINCT FROM"
-    validations:
-      required: true
   - type: dropdown
     id: type
     attributes:
@@ -31,8 +24,4 @@ body:
     attributes:
       label: "Memo (Optional・Markdown)"
       placeholder: |
-        ## Background
-        - ...
-
-        ## What to write
-        - ...
+        メモ:1行目だけ拾う（複数行は1行目まで）

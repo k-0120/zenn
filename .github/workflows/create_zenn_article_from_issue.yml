@@ -1,0 +1,53 @@
+name: "Zenn: Issue→zenn-cliで記事生成→main直コミット（YAML Forms専用）"
+
+on:
+  issues:
+    types: [opened]
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  create-article:
+    # ラベル 'zenn:new-article' が付いた Issue のみ対象
+    if: contains(join(fromJson(toJson(github.event.issue.labels)).*.name, ','), 'zenn:new-article')
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: チェックアウト（main）
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+          persist-credentials: true
+
+      - name: Node をセットアップ
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: zenn-cli をインストール
+        run: npm install --no-save zenn-cli
+
+      - name: Issueタイトルから記事タイトルを抽出
+        id: extract-title
+        run: |
+          # Issueタイトルから "title: " 以降の文字列を抽出
+          ISSUE_TITLE="${{ github.event.issue.title }}"
+          echo "Full issue title: $ISSUE_TITLE"
+          
+          # "title: " 以降の文字列を抽出（大文字小文字を区別しない）
+          ARTICLE_TITLE=$(echo "$ISSUE_TITLE" | sed -n 's/.*[Tt]itle: *\(.*\)/\1/p')
+          
+          if [ -z "$ARTICLE_TITLE" ]; then
+            echo "Error: 'title: ' が見つかりません。Issueタイトルに 'title: <記事タイトル>' の形式で記載してください。"
+            exit 1
+          fi
+          
+          echo "Extracted article title: $ARTICLE_TITLE"
+          echo "article_title=$ARTICLE_TITLE" >> $GITHUB_OUTPUT
+
+      - name: Zenn記事を生成
+        run: |
+          npx zenn new:article --title "${{ steps.extract-title.outputs.article_title }}"
