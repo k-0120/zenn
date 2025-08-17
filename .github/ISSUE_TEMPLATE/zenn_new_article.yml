@@ -1,0 +1,38 @@
+name: "Zenn: Create new article"
+description: "Automatically create a new article file when an issue is created."
+title: "title: <title>"
+labels: ["zenn:new-article"]
+body:
+  - type: input
+    id: title
+    attributes:
+      label: Title
+      placeholder: Example: BigQuery IS DISTINCT FROM
+    validations:
+      required: true
+  - type: dropdown
+    id: type
+    attributes:
+      label: Type (Zenn)
+      options: [tech, idea]
+      default: 0
+  - type: input
+    id: emoji
+    attributes:
+      label: Emoji (If empty, 📝)
+      placeholder: 📝
+  - type: input
+    id: topics
+    attributes:
+      label: Topics (Comma separated)
+      placeholder: bigquery, dbt
+  - type: textarea
+    id: memo
+    attributes:
+      label: Memo (Optional・Markdown)
+      placeholder: |
+        ## Background
+        - ...
+
+        ## What to write
+        - ...
