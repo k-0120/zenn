@@ -6,30 +6,30 @@ body:
   - type: input
     id: title
     attributes:
-      label: Title
-      placeholder: Example: BigQuery IS DISTINCT FROM
+      label: "Title"
+      placeholder: "Example: BigQuery IS DISTINCT FROM"
     validations:
       required: true
   - type: dropdown
     id: type
     attributes:
-      label: Type (Zenn)
+      label: "Type (Zenn)"
       options: [tech, idea]
       default: 0
   - type: input
     id: emoji
     attributes:
-      label: Emoji (If empty, 📝)
-      placeholder: 📝
+      label: "Emoji (If empty, 📝)"
+      placeholder: "📝"
   - type: input
     id: topics
     attributes:
-      label: Topics (Comma separated)
-      placeholder: bigquery, dbt
+      label: "Topics (Comma separated)"
+      placeholder: "bigquery, dbt"
   - type: textarea
     id: memo
     attributes:
-      label: Memo (Optional・Markdown)
+      label: "Memo (Optional・Markdown)"
       placeholder: |
         ## Background
         - ...
