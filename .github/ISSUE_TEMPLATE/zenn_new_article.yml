@@ -1,6 +1,6 @@
 name: "Zenn: Create new article"
 description: "Automatically create a new article file when an issue is created."
-title: "title: <title>"
+title: "title: "
 labels: ["zenn:new-article"]
 body:
   - type: input
