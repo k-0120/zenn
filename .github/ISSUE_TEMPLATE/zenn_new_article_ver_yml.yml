@@ -1,4 +1,4 @@
-name: "Zenn: Create new article"
+name: "Zenn: Create new article (YAML)"
 description: "Automatically create a new article file when an issue is created."
 title: "title: "
 labels: ["zenn:new-article"]
