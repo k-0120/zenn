@@ -71,3 +71,7 @@ ORDER BY
 ```
 
 ![spreadsheet5](/images/google-sheet-bigquery-parameter/spreadsheet5.png)
+
+- ちなみに、BigQuery上で実行されたクエリのログを確認すると、以下のように`@EMAIL`のままログが残されるため、個人情報がログに残る心配もありません。
+
+![spreadsheet4](/images/google-sheet-bigquery-parameter/bigquery.png)
